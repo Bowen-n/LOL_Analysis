@@ -1,3 +1,4 @@
+import argparse
 import json
 
 import lxml
@@ -9,7 +10,7 @@ from constants import *
 
 class OpggSpider():
 
-    def __init__(self, server='www'):
+    def __init__(self, path, server='www'):
         ''' server: 'all' for all servers '''
         self.server = server
         if self.server == 'all':
@@ -17,6 +18,7 @@ class OpggSpider():
         else:
             self.url = ['http://{}.op.gg/ranking/ladder/'.format(server)]
         self.count = 0
+        self.file_path = path
 
 
     def _parse_profile(self, selector, server):
@@ -72,25 +74,26 @@ class OpggSpider():
             else:
                 item['result'] = 'Victory' if match_result == 'Defeat' else 'Defeat'
 
-            item['mmr'] = response.xpath(XPATH_GAME['mmr'])[0]
+            mmr = response.xpath(XPATH_GAME['mmr'])
+            item['mmr'] = mmr[0] if len(mmr) > 0 else 'None'
             item['timestamp'] = match.xpath(XPATH_GAME['timestamp'])[0]
             item['server'] = server
 
             # json_str = json.dumps(item)
-            readed = json.load(open('dataset/opgg.json', 'r'))
+            # readed = json.load(open('dataset/opgg.json', 'r'))
 
             if self.count == 0:
                 item_as_list = [item]
-                with open('dataset/opgg.json', 'w') as f:
-                    json.dump(item_as_list, f)
+                with open(self.file_path, 'w') as f:
+                    json.dump(item_as_list, f, indent=1)
                     self.count += 1
                     print(self.count)
             else:
-                with open('dataset/opgg.json', 'r') as f:
+                with open(self.file_path, 'r') as f:
                     data_list = json.load(f)
                 data_list.append(item)
-                with open('dataset/opgg.json', 'w') as f:
-                    json.dump(data_list, f)
+                with open(self.file_path, 'w') as f:
+                    json.dump(data_list, f, indent=1)
                     self.count += 1
                     print(self.count)
 
@@ -112,7 +115,11 @@ class OpggSpider():
 
 
 def main():
-    opgg_spider = OpggSpider(server='www')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path', type=str, help='the path of file to store data')
+    args = parser.parse_args()
+
+    opgg_spider = OpggSpider(server='www', path=args.path)
     opgg_spider.parse()
 
 
