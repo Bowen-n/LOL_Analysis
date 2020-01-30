@@ -79,15 +79,14 @@ class OpggSpider():
             item['timestamp'] = match.xpath(XPATH_GAME['timestamp'])[0]
             item['server'] = server
 
-            # json_str = json.dumps(item)
-            # readed = json.load(open('dataset/opgg.json', 'r'))
 
             if self.count == 0:
                 item_as_list = [item]
                 with open(self.file_path, 'w') as f:
                     json.dump(item_as_list, f, indent=1)
                     self.count += 1
-                    print(self.count)
+                    if self.count % 100 == 0:
+                        print(self.count)
             else:
                 with open(self.file_path, 'r') as f:
                     data_list = json.load(f)
@@ -95,7 +94,8 @@ class OpggSpider():
                 with open(self.file_path, 'w') as f:
                     json.dump(data_list, f, indent=1)
                     self.count += 1
-                    print(self.count)
+                    if self.count % 100 == 0:
+                        print(self.count)
 
 
 
@@ -116,7 +116,7 @@ class OpggSpider():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('path', type=str, help='the path of file to store data')
+    parser.add_argument('--path', type=str, help='the path of file to store data')
     args = parser.parse_args()
 
     opgg_spider = OpggSpider(server='www', path=args.path)
