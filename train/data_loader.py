@@ -1,5 +1,6 @@
 import json
 
+# TODO: Rewrite as pytorch DataLoader
 def data_loader(source):
     with open(source, 'r') as f:
         data = json.load(f)
