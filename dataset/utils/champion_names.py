@@ -2,6 +2,7 @@ import lxml
 import requests
 from lxml import etree
 
+
 URL = 'https://www.op.gg/champion/statistics'
 C_N_PATTERN = ".//div[@class='champion-index__champion-item__name']//text()"
 
