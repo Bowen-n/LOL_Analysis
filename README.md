@@ -6,4 +6,9 @@ Crawl the game data of summoners in [ranking ladder in opgg](https://www.op.gg/r
 
 
 ## Predictor
+1. Full connected nn: [*train/train_fcnet.py*](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnet.py)
+
 :triangular_flag_on_post: TODO
+* [ ] split data into train and eval
+* [ ] add evaluation during training
+* [ ] other models
