@@ -1,4 +1,4 @@
-# LOL_Analysis
+# LOL Analysis
 This repo includes a spider to crawl high elo(Challenger or Master) LOL games from [opgg](https://www.op.gg/), as well as some ML algorithm to provide game predictions based on team draft.
 
 ## Spider
