@@ -7,6 +7,7 @@ Crawl the game data of summoners in [ranking ladder in opgg](https://www.op.gg/r
 
 ## Model
 Current result:
+
 | model | epoch | loss | acc | notes|
 | ---   | ---   | ---  | --- | ---  |
 |[fcnn]((https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnet.py))  | 24    | 0.4742| 0.8372| **Temporary result**|
