@@ -7,9 +7,10 @@ import numpy as np
 class LolDataset(data.Dataset):
     ''' Lol dataset crawled from op.gg'''
     
-    def __init__(self, json_file):
+    def __init__(self, json_file, normal=True):
         with open(json_file, 'r') as f:
             self.lol_data = json.load(f)
+        self.normal = normal
     
     def __len__(self):
         return len(self.lol_data)
@@ -21,8 +22,9 @@ class LolDataset(data.Dataset):
         data = self.lol_data[idx]
         features = (data['team_1'] + data['team_2'])
         
+
         return {
-            'draft': torch.from_numpy(np.asarray(features)/148), 
+            'draft': torch.from_numpy(np.asarray(features)/148) if self.normal else torch.from_numpy(np.asarray(features)),
             'result': torch.tensor(data['result'])}
 
 
@@ -39,5 +41,3 @@ if __name__ == '__main__':
     for i_batch, sample_batched in enumerate(dataloader):
         print(i_batch, sample_batched['draft'], sample_batched['result'])
         break
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    print(device)
