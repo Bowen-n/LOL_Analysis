@@ -6,7 +6,8 @@ Crawl the game data of summoners in [ranking ladder in opgg](https://www.op.gg/r
 
 
 ## Model
-All models are [here](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/model.py)
+All models are implemented [here](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/model.py)<br>
+Saved models are in [./model](https://github.com/Bowenduan/LOL_Analysis/tree/master/model)<br>
 Current result:
 
 | model | epoch | loss | acc | notes|
