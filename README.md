@@ -21,5 +21,6 @@ Current result:
 * [x] add evaluation during training
 * [x] Saving model and lr schedular
 * [x] fcnn+embedding code
+* [ ] fcnn lr schedular tune
 * [ ] fcnn+embedding train
 * [ ] other models
