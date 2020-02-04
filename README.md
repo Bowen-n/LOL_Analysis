@@ -6,6 +6,7 @@ Crawl the game data of summoners in [ranking ladder in opgg](https://www.op.gg/r
 
 
 ## Model
+All models are [here](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/model.py)
 Current result:
 
 | model | epoch | loss | acc | notes|
@@ -18,5 +19,6 @@ Current result:
 * [x] split data into train and eval
 * [x] add evaluation during training
 * [x] Saving model and lr schedular
-* [ ] fcnn+embedding
+* [x] fcnn+embedding code
+* [ ] fcnn+embedding train
 * [ ] other models
