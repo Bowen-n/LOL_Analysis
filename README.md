@@ -12,8 +12,8 @@ Current result:
 
 | model | epoch | loss | acc | notes|
 | ---   | ---   | ---  | --- | ---  |
-|[fcnn]((https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnet.py))  | 24    | 0.4742| 0.8372| **Temporary result**|
-|fcnn+embedding| | | | :triangular_flag_on_post: |
+|[fcnn]((https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn.py))  | 24    | 0.4742| 0.8372| **Temporary result**|
+|[fcnn+embedding](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn_emb.py)| | | | :triangular_flag_on_post: |
 
 
 :triangular_flag_on_post: TODO
