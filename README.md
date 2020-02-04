@@ -17,6 +17,6 @@ Current result:
 :triangular_flag_on_post: TODO
 * [x] split data into train and eval
 * [x] add evaluation during training
-* [ ] Saving model and lr schedular
+* [x] Saving model and lr schedular
 * [ ] fcnn+embedding
 * [ ] other models
