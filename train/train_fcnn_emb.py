@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     # data
     lol_dataloader = {
-        x: data.DataLoader(LolDataset('data/dataset/{}.json'.format(x), normal=True), 
+        x: data.DataLoader(LolDataset('data/dataset/{}.json'.format(x), normal=False),  #  TODO here normal must be false !!!!
                         batch_size=4, shuffle=True)
         for x in ['train', 'val']}
     lol_datasize = {'train': 51121, 'val': 9000}
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     # loss and optim
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(net.parameters(), lr=1e-2)
+    optimizer = torch.optim.Adam(net.parameters(), lr=1e-4)
     exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.8)
 
     model_best = train_model(net, 

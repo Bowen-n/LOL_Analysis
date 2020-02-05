@@ -24,7 +24,8 @@ class FcNet_Emb(nn.Module):
         super(FcNet_Emb, self).__init__()
         self.embedding = nn.Embedding(148, embed_size)
         self.fc_sp = nn.Linear(10*embed_size, 128)
-        # self.fc_sp_1 = nn.Linear(128, 128)
+        #self.fc_sp_1 = nn.Linear(128, 256)
+        #self.fc_sp_2 = nn.Linear(256, 128)
         self.fc2 = nn.Linear(128, 32)
         self.fc3 = nn.Linear(32, num_classes)
         self.softmax = nn.Softmax()
@@ -34,6 +35,7 @@ class FcNet_Emb(nn.Module):
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc_sp(x))
         # x = F.relu(self.fc_sp_1(x))
+        # x = F.relu(self.fc_sp_2(x))
         x = F.relu(self.fc2(x))
         x = self.softmax(self.fc3(x))
         return x
