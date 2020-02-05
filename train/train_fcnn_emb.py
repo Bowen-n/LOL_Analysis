@@ -57,8 +57,13 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
+                
+                tmp_save_path = 'model/fcnn_emb/lol_fcnnemb_{}.pth'.format(epoch)
+                torch.save(model.state_dict(), tmp_save_path)
+
 
         print()
+
 
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
@@ -81,18 +86,23 @@ if __name__ == '__main__':
 
     # net
     net = FcNet_Emb(embed_size=8, num_classes=2).to(device)
+    pretrained_dict = torch.load('model/fcnn/lol_fcnn_best.pth')
+    net_dict = net.state_dict()
+    pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in net_dict}
+    net_dict.update(pretrained_dict)
+    net.load_state_dict(net_dict)
 
     # loss and optim
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(net.parameters(), lr=1e-4)
-    exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.8)
+    optimizer = torch.optim.Adam(net.parameters(), lr=1e-2)
+    exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.8)
 
     model_best = train_model(net, 
                              criterion,
                              optimizer, 
-                             scheduler=exp_lr_scheduler, 
+                             scheduler=None, 
                              num_epochs=40)
 
     # save model
-    PATH = 'model/lol_fcnnemb.pth'
+    PATH = 'model/lol_fcnnemb_final.pth'
     torch.save(model_best.state_dict(), PATH)

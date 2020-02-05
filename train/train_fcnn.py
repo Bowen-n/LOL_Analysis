@@ -58,6 +58,8 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
 
+                tmp_save_path = 'model/fcnn/lol_fcnn_{}.pth'.format(epoch)
+                torch.save(model.state_dict(), tmp_save_path)
         print()
 
     time_elapsed = time.time() - since
@@ -81,19 +83,21 @@ if __name__ == '__main__':
 
     # net
     net = FcNet(10, 2).to(device)
+    model_path = 'model/lol_fcnn.pth'
+    net.load_state_dict(torch.load(model_path))
 
     # loss and optim
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(net.parameters(), lr=1e-4)
-    exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.2)
+    exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.8)
 
     model_best = train_model(net, 
                              criterion,
                              optimizer, 
                              scheduler=exp_lr_scheduler, 
-                             num_epochs=40)
+                             num_epochs=20)
 
     # save model
-    PATH = 'model/lol_fcnn.pth'
+    PATH = 'model/fcnn/lol_fcnn_final.pth'
     torch.save(model_best.state_dict(), PATH)
     
