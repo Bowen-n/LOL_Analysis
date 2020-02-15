@@ -12,7 +12,7 @@ Current result:
 
 | model | epoch | loss | acc | notes|
 | ---   | ---   | ---  | --- | ---  |
-|[fcnn](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn.py)  | 24    | 0.4742| 0.8372| adam lr=1e-4 |
+|[fcnn](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn.py)  |  80  | 0.4429| 87.02% | adam: lr=1e-3 epochs=40 -> lr=1e-4 epochs=40 |
 |[fcnn+embedding](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn_emb.py)| 33 | 0.4961 | 0.8167 | adam lr=1e-4 |
 
 
@@ -22,7 +22,7 @@ Current result:
 * [x] add evaluation during training
 * [x] saving model and lr schedular
 * [x] fcnn+embedding code
-* [ ] fcnn lr schedular tune 
+* [x] fcnn lr schedular tune 
 * [x] fcnn+embedding train
 * [ ] fcnn+embedding lr schedular tune 
 * [ ] other models
