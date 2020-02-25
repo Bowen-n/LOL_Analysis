@@ -14,6 +14,7 @@ Current result:
 | ---   | ---   | ---  | --- | ---  |
 |[fcnn](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn.py)  |  80  | 0.4429| 87.02% | adam: lr=1e-3 epochs=40 -> lr=1e-4 epochs=40 |
 |[fcnn+embedding](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn_emb.py)| 80 | 0.4140 | 89.99% | embedding size=8, adam lr=1e-3->1e-4|
+|fcnn+embedding| 80 | 0.3990 | 91.44% | embedding size=32 |
 
 
 :triangular_flag_on_post: TODO
