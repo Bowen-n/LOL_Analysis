@@ -80,22 +80,19 @@ if __name__ == '__main__':
     # data
     lol_dataloader = {
         x: data.DataLoader(LolDataset('data/dataset/{}.json'.format(x), normal=False),  #  TODO here normal must be false !!!!
-                        batch_size=4, shuffle=True)
+                        batch_size=64, shuffle=True)
         for x in ['train', 'val']}
     lol_datasize = {'train': 51121, 'val': 9000}
 
     # net
     net = FcNet_Emb(embed_size=8, num_classes=2).to(device)
-    pretrained_dict = torch.load('model/fcnn/lol_fcnn_best.pth')
-    net_dict = net.state_dict()
-    pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in net_dict}
-    net_dict.update(pretrained_dict)
-    net.load_state_dict(net_dict)
+    model_path = 'model/fcnn_emb/best/lol_fcnnemb_best.pth'
+    net.load_state_dict(torch.load(model_path))
 
     # loss and optim
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(net.parameters(), lr=1e-4)
-    exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.8)
+    optimizer = torch.optim.Adam(net.parameters(), lr=1e-5)
+    # exp_lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.8)
 
     model_best = train_model(net, 
                              criterion,
@@ -104,5 +101,5 @@ if __name__ == '__main__':
                              num_epochs=40)
 
     # save model
-    PATH = 'model/lol_fcnnemb_final.pth'
+    PATH = 'model/fcnn_emb/lol_fcnnemb_final.pth'
     torch.save(model_best.state_dict(), PATH)
