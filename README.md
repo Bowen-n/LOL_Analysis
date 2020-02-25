@@ -13,7 +13,7 @@ Current result:
 | model | epoch | loss | acc | notes|
 | ---   | ---   | ---  | --- | ---  |
 |[fcnn](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn.py)  |  80  | 0.4429| 87.02% | adam: lr=1e-3 epochs=40 -> lr=1e-4 epochs=40 |
-|[fcnn+embedding](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn_emb.py)| 80 | 0.4140 | 89.99% | adam lr=1e-3 epochs=40 -> lr=1e-4 epochs=40 |
+|[fcnn+embedding](https://github.com/Bowenduan/LOL_Analysis/blob/master/train/train_fcnn_emb.py)| 80 | 0.4140 | 89.99% | embedding size=8, adam lr=1e-3->1e-4|
 
 
 :triangular_flag_on_post: TODO
